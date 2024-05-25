@@ -162,6 +162,7 @@ cython_debug/
 #.idea/
 
 
-opencv_basic\Videos
-opencv_basic\Images
-.git\COMMIT_EDITMSG
+
+
+opencv_basic/Images/
+opencv_basic/Videos/
