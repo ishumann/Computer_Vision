@@ -29,17 +29,20 @@
 
 import cv2
 import numpy as np
-img = cv2.imread('./Section_01_R/Images/d.jpg')
-# Applying Canny Edge Detector
 
-img_canny = cv2.Canny(img, threshold1=400, threshold2=500)
+kernel = np.ones((5,5), np.uint8)
 
-# Applying Dilation 
-kernel = np.ones( (5,5), np.uint8)
-img_dil = cv2.dilate(img_canny, kernel, iterations=1) 
+ltresh = 500
+htresh = 700
 
-cv2.imshow('original', img)
-cv2.imshow('Canny', img_canny)
-cv2.imshow('dilated', img_dil)
+image = cv2.imread('./opencv_basic/Images/car.jpg')
 
+# image = cv2.imread('../Images/car.jpg')
+
+edge  = cv2.Canny(image, ltresh,htresh)
+
+dilate = cv2.dilate(edge, kernel=kernel, iterations=1)
+
+cv2.imshow('output',dilate)
+cv2.imshow('canny', edge)
 cv2.waitKey()
