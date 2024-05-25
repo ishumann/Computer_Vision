@@ -164,3 +164,4 @@ cython_debug/
 
 opencv_basic\Videos
 opencv_basic\Images
+.git\COMMIT_EDITMSG
