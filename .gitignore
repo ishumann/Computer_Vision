@@ -166,3 +166,4 @@ cython_debug/
 
 opencv_basic/Images/
 opencv_basic/Videos/
+.vscode
