@@ -166,4 +166,6 @@ cython_debug/
 
 opencv_basic/Images/
 opencv_basic/Videos/
-.vscode
+.vscode/
+opencv_basic/.vscode/
+.vscode\settings.json
