@@ -13,3 +13,20 @@
 
 # cv2.waitKey(0)
 
+import cv2
+
+image = cv2.imread('./opencv_basic/Images/face.png')
+
+faceCascade = cv2.CascadeClassifier('./opencv_basic/haarcascades/haarcascade_frontalface_default.xml')
+
+gray_img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+face = faceCascade.detectMultiScale(gray_img, 1.1, 4)
+
+for x,y,w,h in face:
+    cv2.rectangle(image, (x,y),(x+w,h+y),(255,0,0),3)   
+
+cv2.imshow('output',image)
+cv2.waitKey(0)
+
+
