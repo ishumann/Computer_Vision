@@ -35,7 +35,7 @@ kernel = np.ones((5,5), np.uint8)
 ltresh = 500
 htresh = 700
 
-image = cv2.imread('./opencv_basic/Images/car.jpg')
+image = cv2.imread('./Images/car.jpg')
 
 # image = cv2.imread('../Images/car.jpg')
 

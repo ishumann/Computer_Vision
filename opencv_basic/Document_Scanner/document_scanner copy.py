@@ -66,7 +66,7 @@ def wrap(image, biggest):
 
 
 
-image = cv2.imread('./opencv_basic/Images/documentscanner2.jpg')
+image = cv2.imread('./Images/documentscanner2.jpg')
 contour_img = image.copy()
 
 preprocess_image = preprocess_image(image)

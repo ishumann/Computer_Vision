@@ -61,7 +61,7 @@ def warp_perscpective(img, biggest):
 
 
 
-image = cv2.imread("./opencv_basic/Images/documentscanner2.jpg")
+image = cv2.imread("./Images/documentscanner2.jpg")
 #image_resize=cv2.resize(image, (640, 480))
 image_contours = image.copy()
 preprocessed_image=preprocess_image(image)

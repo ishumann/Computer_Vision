@@ -1,6 +1,6 @@
 # import cv2
 
-# image = cv2.imread("../opencv_basic/Images/documentscanner2.jpg")
+# image = cv2.imread("../Images/documentscanner2.jpg")
 # #Setting the Threshold Values
 # t_lower=400
 # t_higher=500
@@ -18,7 +18,7 @@
 
 import cv2
 
-image = cv2.imread("./opencv_basic/Images/documentscanner2.jpg")
+image = cv2.imread("./Images/documentscanner2.jpg")
 
 print(image.shape)
 

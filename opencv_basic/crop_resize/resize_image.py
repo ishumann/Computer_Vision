@@ -19,7 +19,7 @@
 
 import cv2
 
-img = cv2.imread('./opencv_basic/Images/lambo.png')
+img = cv2.imread('./Images/lambo.png')
 # print(int(img.shape[0]*.5), int(img.shape[1],*.5))
 
 

@@ -18,7 +18,7 @@
 
 import cv2
 
-img = cv2.imread('./opencv_basic/Images/image3.png')
+img = cv2.imread('./Images/image3.png')
 
 cv2.imshow('img', img)
 print('original shape of the image', img.shape)

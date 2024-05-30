@@ -35,7 +35,7 @@ import cv2
 import numpy as np
 
 
-img = cv2.imread('./opencv_basic/Images/car.jpg')
+img = cv2.imread('./Images/car.jpg')
 
 kernel = np.ones((1,1), np.int8)
 low_thresh = 50

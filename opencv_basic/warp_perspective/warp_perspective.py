@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-image = cv2.imread("./opencv_basic/Images/cards2.jpg")
+image = cv2.imread("./Images/cards2.jpg")
 
 
 
@@ -36,7 +36,7 @@ cv2.waitKey(0)
 # import cv2
 # import numpy as np
 
-# img = cv2.imread('./opencv_basic/Images/card2.jpg')
+# img = cv2.imread('./Images/card2.jpg')
 
 # width, height  = 500, 500
 

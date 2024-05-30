@@ -15,7 +15,7 @@
 
 import cv2
 
-image = cv2.imread('./opencv_basic/Images/face.png')
+image = cv2.imread('./Images/face.png')
 
 faceCascade = cv2.CascadeClassifier('./opencv_basic/haarcascades/haarcascade_frontalface_default.xml')
 

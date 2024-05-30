@@ -169,3 +169,5 @@ opencv_basic/Videos/
 .vscode/
 opencv_basic/.vscode/
 .vscode\settings.json
+Images/
+Videos/

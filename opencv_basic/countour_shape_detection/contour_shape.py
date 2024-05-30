@@ -54,7 +54,7 @@ cv2.createTrackbar('Canny High',"Trackbars",100,500, empty)
 
 while True:
     # loading image
-    image = cv2.imread('./opencv_basic/Images/shapes.png')
+    image = cv2.imread('./Images/shapes.png')
     # convert to gray
     gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 

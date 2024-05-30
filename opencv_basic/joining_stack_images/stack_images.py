@@ -35,9 +35,9 @@ import cv2
 import numpy as np
 
 
-img1 = cv2.imread('./opencv_basic/Images/car.jpg')
+img1 = cv2.imread('./Images/car.jpg')
 
-img2 = cv2.imread('./opencv_basic/Images/lambo.png')
+img2 = cv2.imread('./Images/lambo.png')
 
 img1 = cv2.resize(img1, (img2.shape[1],  img2.shape[0]))
 

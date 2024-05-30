@@ -88,7 +88,7 @@
 import cv2
 import numpy as np
 
-image = cv2.imread("./opencv_basic/Images/shapes.png")
+image = cv2.imread("./Images/shapes.png")
 image_copy = image.copy()
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 

@@ -56,7 +56,7 @@ cv2.createTrackbar('Val Min', "Trackbars",0,255, empty)
 cv2.createTrackbar('Val Max', "Trackbars",255,255, empty)
 
 while True:
-    img1 = cv2.imread('./opencv_basic/Images/car.jpg')       
+    img1 = cv2.imread('./Images/car.jpg')       
     imgHSV =cv2.cvtColor(img1, cv2.COLOR_BGR2HSV)
     
     h_min = cv2.getTrackbarPos('Hue Min', 'Trackbars')
