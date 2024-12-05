@@ -6,7 +6,7 @@ import cv2
 
 # TO read the image i will use imread function
 
-image = cv2.imread("./Section_01_R/Images/face.png")
+image = cv2.imread("./Images/face.png")
 
 # Display the Output Image
 

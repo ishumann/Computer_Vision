@@ -24,17 +24,20 @@ def lanedetection(video_path):
     kernel = np.array((3,3), np.uint8)
     
     dilate = cv2.dilate(roi_area, kernel, iterations=1)
-    
+    cv2.imshow('dilate',dilate)   
+        
     # step 3 : gray scale image
     
     gray_scale = cv2.cvtColor(dilate, cv2.COLOR_BGR2GRAY)
-    
+    cv2.imshow('gray_scale', gray_scale)
     # step 4 : threshold the Gray Scale Image to detect only white Colors
     
     mask = cv2.inRange(gray_scale, 215, 255)   
+    cv2.imshow('mask', mask)
+    
     
     bitwise_and = cv2.bitwise_and(gray_scale, gray_scale,mask=mask)
-    
+    cv2.imshow('bitwise_and', bitwise_and)
     # step 7: applying threshold
     
     thresh, gray = cv2.threshold(bitwise_and, 150, 255, cv2.THRESH_BINARY)
@@ -42,12 +45,13 @@ def lanedetection(video_path):
     # step 8  find the lane line using canny edge detector
     
     canny_edge = cv2.Canny(gray, 0.3*thresh,thresh)
-    
+    cv2.imshow('canny_edge', canny_edge)
     
     # step 9 apply the Hough transform
     
     
     lane_lines = cv2.HoughLinesP(canny_edge,2,np.pi/180,30, minLineLength=15,maxLineGap=40)
+
     
     return lane_lines,roi    
     

@@ -4,7 +4,7 @@ cap=cv2.VideoCapture(0)
 cap.set(3, 640)
 cap.set(4, 480)
 
-cap.set(10, 150)
+cap.set(0, 150)
 while True:
     success, frame = cap.read()
     print("Frame", frame.shape)
@@ -19,3 +19,4 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 
+qq

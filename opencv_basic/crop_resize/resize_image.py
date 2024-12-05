@@ -20,10 +20,9 @@
 import cv2
 
 img = cv2.imread('./Images/lambo.png')
-# print(int(img.shape[0]*.5), int(img.shape[1],*.5))
 
 
-test = (int(img.shape[0]*.5), int(img.shape[1]*.5))
+test = (int(img.shape[0]*.5), int(img.shape[1]*.5)) 
 
 resize = cv2.resize(img,test)
 
