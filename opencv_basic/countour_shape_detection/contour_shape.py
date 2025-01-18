@@ -38,49 +38,28 @@
 # cv2.waitKey(0)
 
 
-
 import cv2
 import numpy as np
 
-cv2.namedWindow('Trackbars')
-cv2.resizeWindow('Trackbars',640,240)
+image = cv2.imread('./Images/shapes.png')
+upper_threshold = 150
+lower_threshold = 150
+canny = cv2.Canny(image, lower_threshold, upper_threshold)
+image_grayscale = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+contours, hirearchy = cv2.findContours(canny.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
-def empty(a):
-    pass
+print(f"Length of the Contours ={str(len(contours))}")
 
+image_copy = image.copy()
 
-cv2.createTrackbar('Canny Low',"Trackbars",0,100, empty)
-cv2.createTrackbar('Canny High',"Trackbars",100,500, empty)
+cv2.drawContours(image_copy, contours, -1,(0,255,0),3)
 
-while True:
-    # loading image
-    image = cv2.imread('./Images/shapes.png')
-    # convert to gray
-    gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-
-    # appling canny edge detector
-    l_thresh = cv2.getTrackbarPos("Canny Low",'Trackbars')
-    h_thresh = cv2.getTrackbarPos("Canny High", 'Trackbars')
-
-    canny = cv2.Canny(gray, l_thresh, h_thresh)
-
-    # finding contours
-    
-    img_copy = image.copy()
-    
-    contours, hirearchy = cv2.findContours(
-        canny.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    
-
-    
-    print(f'total contours in img is {len(contours)}')
-    cv2.drawContours(img_copy, contours,-1, (0,255,0),3)
-    
+cv2.imshow('Original Image', image)
 
 
-    cv2.imshow('Original', image)
-    cv2.imshow('Gray', gray)
-    cv2.imshow('canny', canny)
-    cv2.imshow('countours', img_copy)
+cv2.imshow('grayscale Image', image_grayscale)
+cv2.imshow('Canny Image', canny)
 
-    cv2.waitKey(1)
+
+cv2.imshow("output", image_copy)
+cv2.waitKey(0)
