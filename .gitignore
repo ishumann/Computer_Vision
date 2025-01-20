@@ -172,3 +172,5 @@ opencv_basic/.vscode/
 Images/
 Videos/
 Computer_Vision.code-workspace
+yolov8n.pt
+output.avi
