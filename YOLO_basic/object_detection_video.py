@@ -5,7 +5,88 @@ from ultralytics import YOLO
 cap = cv2.VideoCapture("./Videos/1.mp4")
 
 model = YOLO('yolov8n.pt')
-
+coco_classes = [
+    "person",
+    "bicycle",
+    "car",
+    "motorcycle",
+    "airplane",
+    "bus",
+    "train",
+    "truck",
+    "boat",
+    "traffic light",
+    "fire hydrant",
+    "stop sign",
+    "parking meter",
+    "bench",
+    "bird",
+    "cat",
+    "dog",
+    "horse",
+    "sheep",
+    "cow",
+    "elephant",
+    "bear",
+    "zebra",
+    "giraffe",
+    "backpack",
+    "umbrella",
+    "handbag",
+    "tie",
+    "suitcase",
+    "frisbee",
+    "skis",
+    "snowboard",
+    "sports ball",
+    "kite",
+    "baseball bat",
+    "baseball glove",
+    "skateboard",
+    "surfboard",
+    "tennis racket",
+    "bottle",
+    "wine glass",
+    "cup",
+    "fork",
+    "knife",
+    "spoon",
+    "bowl",
+    "banana",
+    "apple",
+    "sandwich",
+    "orange",
+    "broccoli",
+    "carrot",
+    "hot dog",
+    "pizza",
+    "donut",
+    "cake",
+    "chair",
+    "couch",
+    "potted plant",
+    "bed",
+    "dining table",
+    "toilet",
+    "TV",
+    "laptop",
+    "mouse",
+    "remote",
+    "keyboard",
+    "cell phone",
+    "microwave",
+    "oven",
+    "toaster",
+    "sink",
+    "refrigerator",
+    "book",
+    "clock",
+    "vase",
+    "scissors",
+    "teddy bear",
+    "hair drier",
+    "toothbrush",
+]
 
 if (cap.isOpened()=="False"):
     print("Error Reading the video")
@@ -24,14 +105,13 @@ output = cv2.VideoWriter(
 
 while(cap.isOpened()):
     ret, frame = cap.read()
-    
+
     if ret:
-        #object Detections using YOLOv8, frame by frame
-        #stream = True, # it will be using generator and it is more efficient than the normal
-        
-        
+        # object Detections using YOLOv8, frame by frame
+        # stream = True, # it will be using generator and it is more efficient than the normal
+
         results = model(frame, stream=True)
-        
+
         for r in results:
             boxes = r.boxes
 
@@ -40,12 +120,18 @@ while(cap.isOpened()):
                 print(x1, y1, x2, y2)
                 x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
                 cv2.rectangle(frame,(x1,y1),(x2,y2), (0,255,0),3)
-            
-            
+                conf = math.ceil((box.conf[0]*100))/100
+                cls = int(box.cls[0])
+                class_name = coco_classes[cls]
+                label = f'{class_name}{conf}'
+                text_size = cv2.getTextsize(label, 0, fontscale= 1, thickness=2)[0]
+                c2 = x1+text_size[0]+y1-text_size[1]-3
+                cv2.rectangle(frame, (0,0), fx=0.6, fy=0.6 ,interpolation=cv2.LINE_AA)
+                
         resize_frame = cv2.resize(frame, (0,0), fx=0.6, fy=0.6,interpolation=cv2.INTER_AREA)
         output.write(frame)
         cv2.imshow('frame', resize_frame) 
-    
+
         if cv2.waitKey(1) & 0xff == ord("q"):
             break
 
