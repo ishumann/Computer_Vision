@@ -1,6 +1,6 @@
 import cv2
 from ultralytics import YOLO
-
+import math
 
 cap = cv2.VideoCapture("./Videos/1.mp4")
 
@@ -124,10 +124,11 @@ while(cap.isOpened()):
                 cls = int(box.cls[0])
                 class_name = coco_classes[cls]
                 label = f'{class_name}{conf}'
-                text_size = cv2.getTextsize(label, 0, fontscale= 1, thickness=2)[0]
-                c2 = x1+text_size[0]+y1-text_size[1]-3
-                cv2.rectangle(frame, (0,0), fx=0.6, fy=0.6 ,interpolation=cv2.LINE_AA)
-                
+                text_size = cv2.getTextSize(label, 0, fontScale=1, thickness=2)[0]
+                c2 = x1+text_size[0],y1-text_size[1]-3
+                cv2.rectangle(frame, (x1, y1), c2, [255,0,0], -1, cv2.LINE_AA)
+                cv2.putText(frame, label, (x1, y1-2), 0,1,[255,255,255], thickness=1, lineType=cv2.LINE_AA)
+
         resize_frame = cv2.resize(frame, (0,0), fx=0.6, fy=0.6,interpolation=cv2.INTER_AREA)
         output.write(frame)
         cv2.imshow('frame', resize_frame) 
