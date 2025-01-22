@@ -88,7 +88,7 @@ coco_classes = [
     "toothbrush",
 ]
 
-if (cap.isOpened()=="False"):
+if (cap.isOpened()==False):
     print("Error Reading the video")
 
 frame_width = int(cap.get(3))
