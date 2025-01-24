@@ -44,6 +44,8 @@ output = cv2.VideoWriter(
 )
 count = 0
 center_points_previous_frame = []
+tracking_objects = {}
+track_id = 0
 while cap.isOpened():
     center_points_current_frame = []
     ret, frame = cap.read()
@@ -74,8 +76,17 @@ while cap.isOpened():
         c2 = x1+text_size[0],y1-text_size[1]-3
         cv2.rectangle(frame, (x1, y1), c2, [255,0,0], -1, cv2.LINE_AA)
         cv2.putText(frame, label, (x1, y1-2), 0,1,[255,255,255], thickness=1, lineType=cv2.LINE_AA)
-        for pt in center_points_current_frame:
-            cv2.circle(frame, pt, 2, (0,255,0), -1)
+        
+        
+    for pt in center_points_current_frame:
+        for pt2 in center_points_previous_frame:
+            distance = math.hypot(pt2[0]-pt[0], pt2[1]-pt[1])
+            if distance< 10:
+                tracking_objects[track_id] = pt
+                track_id += 1 
+    for object_id, pt in tracking_objects.items():
+        cv2.circle(frame, pt, 2, (0,255,0), -1)
+        cv2.putText(frame, str(object_id), (pt[0], pt[1]-7),0,1 ,(0,255,0),1)
 
     resize_frame = cv2.resize(
         frame, (0, 0), fx=0.6, fy=0.6, interpolation=cv2.INTER_AREA
@@ -85,7 +96,7 @@ while cap.isOpened():
     print("Center Points of the current frame: ", center_points_current_frame)
     cv2.imshow("frame", resize_frame)
     center_points_previous_frame = center_points_current_frame.copy()
-    if cv2.waitKey(0) & 0xFF == ord("q"):
+    if cv2.waitKey(1) & 0xFF == ord("q"):
         break
 
 output.release()
